@@ -3,6 +3,20 @@
   "about": "Change log, like git log: one entry per set of changes, newest first. Only what changed, which files, and why. Plans, research and requirements live in PRD.md.",
   "entries": [
     {
+      "id": 13,
+      "date": "2026-11-12",
+      "summary": "Publish mannerly 0.1.0 to crates.io",
+      "files": {
+        "added": [],
+        "modified": [
+          "PRD.md",
+          "log.json"
+        ],
+        "deleted": []
+      },
+      "why": "User asked to publish mannerly 0.1.0 to crates.io. Ran cargo publish --locked and updated the publish milestone and open questions in PRD.md."
+    },
+    {
       "id": 12,
       "date": "2026-11-11",
       "summary": "Fix Linux clippy lint on openpty and strip CI env var in probes",

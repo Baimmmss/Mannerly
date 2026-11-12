@@ -6,7 +6,7 @@
 |---|---|
 | Version | 0.1.0 |
 | Status | draft |
-| Updated | 2026-11-11 |
+| Updated | 2026-11-12 |
 
 ## Problem
 
@@ -114,11 +114,11 @@ Scoring: pass = full weight, warning = half, fail = 0, skipped = excluded from t
 | Core checks and reports | done |
 | README, skill, Action, CI, release | done |
 | Tests (22 passing on macOS and Linux); Windows build | done |
-| Publish (only when the user says so) | GitHub repo (`Baimmmss/Mannerly`) published; crates.io and Homebrew todo |
+| Publish (only when the user says so) | GitHub repo (`Baimmmss/Mannerly`) and crates.io (`mannerly 0.1.0`) published; Homebrew todo |
 
 ## Open questions
 
-- Whether to publish to crates.io and Homebrew at launch
+- Whether to publish a Homebrew tap/formula
 
 ## Research (2026-11-11)
 
