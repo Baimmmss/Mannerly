@@ -20,9 +20,9 @@ build_from_source() {
     echo "Install Rust from https://rustup.rs, then run this again." >&2
     exit 1
   fi
-  echo "$1; building from source with cargo (takes a minute)…"
-  cargo install mannerly --locked --root "$tmp/root"
-  mv "$tmp/root/bin/mannerly" "$tmp/mannerly"
+  echo "$1; building from source with cargo (takes a minute)..."
+  cargo install mannerly --locked --root "${tmp}/root"
+  mv "${tmp}/root/bin/mannerly" "${tmp}/mannerly"
 }
 
 target=""
@@ -36,36 +36,36 @@ case "$(uname -m)" in
   arm64 | aarch64) arch="aarch64" ;;
   *) arch="" ;;
 esac
-[ -n "$os" ] && [ -n "$arch" ] && target="$arch-$os"
+[ -n "${os}" ] && [ -n "${arch}" ] && target="${arch}-${os}"
 
-if [ -z "$target" ]; then
+if [ -z "${target}" ]; then
   build_from_source "no prebuilt binary for $(uname -s) $(uname -m)"
 else
-  if [ "$VERSION" = "latest" ]; then
-    base="https://github.com/$REPO/releases/latest/download"
+  if [ "${VERSION}" = "latest" ]; then
+    base="https://github.com/${REPO}/releases/latest/download"
   else
-    base="https://github.com/$REPO/releases/download/$VERSION"
+    base="https://github.com/${REPO}/releases/download/${VERSION}"
   fi
-  echo "Downloading mannerly ($VERSION) for $target…"
-  if curl -fsSL "$base/mannerly-$target.tar.gz" -o "$tmp/mannerly.tar.gz" 2>/dev/null; then
-    if curl -fsSL "$base/mannerly-$target.sha256" -o "$tmp/sum" 2>/dev/null; then
-      expected="$(cut -d' ' -f1 < "$tmp/sum")"
-      if command -v shasum >/dev/null 2>&1; then actual="$(shasum -a 256 "$tmp/mannerly.tar.gz" | cut -d' ' -f1)"
-      else actual="$(sha256sum "$tmp/mannerly.tar.gz" | cut -d' ' -f1)"; fi
-      [ "$expected" = "$actual" ] || { echo "mannerly: checksum mismatch, aborting" >&2; exit 1; }
+  echo "Downloading mannerly (${VERSION}) for ${target}..."
+  if curl -fsSL "${base}/mannerly-${target}.tar.gz" -o "${tmp}/mannerly.tar.gz" 2>/dev/null; then
+    if curl -fsSL "${base}/mannerly-${target}.sha256" -o "${tmp}/sum" 2>/dev/null; then
+      expected="$(cut -d' ' -f1 < "${tmp}/sum")"
+      if command -v shasum >/dev/null 2>&1; then actual="$(shasum -a 256 "${tmp}/mannerly.tar.gz" | cut -d' ' -f1)"
+      else actual="$(sha256sum "${tmp}/mannerly.tar.gz" | cut -d' ' -f1)"; fi
+      [ "${expected}" = "${actual}" ] || { echo "mannerly: checksum mismatch, aborting" >&2; exit 1; }
     fi
-    tar -xzf "$tmp/mannerly.tar.gz" -C "$tmp"
+    tar -xzf "${tmp}/mannerly.tar.gz" -C "${tmp}"
   else
-    build_from_source "no release binary for $target yet"
+    build_from_source "no release binary for ${target} yet"
   fi
 fi
 
-mkdir -p "$DIR"
-mv "$tmp/mannerly" "$DIR/mannerly"
-chmod +x "$DIR/mannerly"
+mkdir -p "${DIR}"
+mv "${tmp}/mannerly" "${DIR}/mannerly"
+chmod +x "${DIR}/mannerly"
 
-echo "Installed mannerly to $DIR/mannerly"
-case ":$PATH:" in
-  *":$DIR:"*) echo "Try: mannerly git" ;;
-  *) echo "Add $DIR to your PATH, then try: mannerly git" ;;
+echo "Installed mannerly to ${DIR}/mannerly"
+case ":${PATH}:" in
+  *":${DIR}:"*) echo "Try: mannerly git" ;;
+  *) echo "Add ${DIR} to your PATH, then try: mannerly git" ;;
 esac

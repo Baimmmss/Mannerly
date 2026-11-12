@@ -15,7 +15,7 @@
         ],
         "deleted": []
       },
-      "why": "User asked for the curl | sh installer setup like diskdiet. Put the curl one-liner at the top of README.md and first in the Install section, added a build-from-source cargo fallback to install.sh, and mirrored main to master so both /main/install.sh and /master/install.sh URLs resolve."
+      "why": "User asked for the curl | sh installer setup like diskdiet. Put the curl one-liner at the top of README.md and first in the Install section, added a build-from-source cargo fallback to install.sh, braced shell variables and replaced the Unicode ellipsis after $target (which caused /bin/sh to treat the UTF-8 byte as part of the variable name under set -u), and mirrored main to master so both /main/install.sh and /master/install.sh URLs resolve."
     },
     {
       "id": 13,
