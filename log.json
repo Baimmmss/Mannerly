@@ -3,6 +3,21 @@
   "about": "Change log, like git log: one entry per set of changes, newest first. Only what changed, which files, and why. Plans, research and requirements live in PRD.md.",
   "entries": [
     {
+      "id": 14,
+      "date": "2026-11-12",
+      "summary": "Promote curl install one-liner in README and add cargo fallback to install.sh",
+      "files": {
+        "added": [],
+        "modified": [
+          "README.md",
+          "install.sh",
+          "log.json"
+        ],
+        "deleted": []
+      },
+      "why": "User asked for the curl | sh installer setup like diskdiet. Put the curl one-liner at the top of README.md and first in the Install section, added a build-from-source cargo fallback to install.sh, and mirrored main to master so both /main/install.sh and /master/install.sh URLs resolve."
+    },
+    {
       "id": 13,
       "date": "2026-11-12",
       "summary": "Publish mannerly 0.1.0 to crates.io",

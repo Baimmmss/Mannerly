@@ -17,7 +17,7 @@ scores it from 0 to 100, and tells you exactly how to fix what's wrong.
 </div>
 
 ```bash
-cargo install mannerly
+curl -fsSL https://raw.githubusercontent.com/Baimmmss/mannerly/main/install.sh | sh
 mannerly <your-tool>
 ```
 
@@ -184,14 +184,19 @@ The `--json` output is built for agents: every check comes with what was observe
 
 ## Install
 
-```bash
-cargo install mannerly
-```
-
-Or a prebuilt binary (macOS, Linux):
+**macOS and Linux**: downloads a prebuilt binary, done in a few seconds:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Baimmmss/mannerly/main/install.sh | sh
+```
+
+**Windows**: download `mannerly-x86_64-pc-windows-msvc.zip` (or `aarch64` for ARM) from [Releases](https://github.com/Baimmmss/mannerly/releases/latest), unzip it and run `mannerly.exe`.
+
+**With Rust**, on any OS:
+
+```bash
+cargo binstall mannerly          # prebuilt binary, no compiling (needs cargo-binstall)
+cargo install mannerly --locked  # builds from source, about a minute
 ```
 
 macOS and Linux are fully supported. On Windows the terminal and closed-pipe checks are skipped.
